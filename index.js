@@ -1,5 +1,30 @@
 var numberOfClicks = document.querySelectorAll(".drum").length;
 
+// Detect button clicks
+
+for (var i = 0; i < numberOfClicks; i++) {
+
+  document.querySelectorAll(".drum")[i].addEventListener("click", function() {
+
+    var buttonInnerHtml = this.innerHTML;
+
+    playSound(buttonInnerHtml);
+
+    buttomAnimation(buttonInnerHtml);
+
+  });
+}
+
+// Detect Keyboard Clicks
+
+document.addEventListener("keydown", function(event) {
+
+  var keyPressed = event.key;
+  playSound(keyPressed);
+  buttomAnimation(keyPressed);
+
+});
+
 function playSound(key) {
 
   switch (key) {
@@ -33,28 +58,19 @@ function playSound(key) {
       break;
 
     default:
-      console.log(buttonInnerHtml + " clicked!")
+      console.log(key+" clicked!");
   }
 }
 
-// Detect button clicks
 
-for (var i = 0; i < numberOfClicks; i++) {
+function buttomAnimation(currentButton) {
 
-  document.querySelectorAll(".drum")[i].addEventListener("click", function() {
+var activeButton = document.querySelector("." + currentButton);
 
-    var buttonInnerHtml = this.innerHTML;
+activeButton.classList.add("pressed");
 
-    playSound(buttonInnerHtml);
+setTimeout(function(){
+  activeButton.classList.remove("pressed");
+},100);
 
-  });
 }
-
-// Detect Keyboard Clicks
-
-document.addEventListener("keydown", function(event) {
-
-  var keyPressed = event.key;
-  playSound(keyPressed);
-
-});
