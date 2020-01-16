@@ -17,7 +17,7 @@ for (var i = 0; i < numberOfClicks; i++) {
 
 // Detect Keyboard Clicks
 
-document.addEventListener("keyup", function(event) {
+document.addEventListener("keydown", function(event) {
 
   var keyPressed = event.key;
   playSound(keyPressed);
